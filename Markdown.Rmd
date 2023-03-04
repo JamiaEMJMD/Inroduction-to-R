@@ -28,6 +28,6 @@ summary(regresn)
 library(ggplot2)
 qplot(Sepal.Length,Sepal.Width, data = iris2, 
       geom= "point")+ geom_smooth(method= "lm") 
-
+#git clone
 ```
 
