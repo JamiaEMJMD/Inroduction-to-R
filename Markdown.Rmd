@@ -1,0 +1,33 @@
+---
+title: "Markdown Execise"
+author: "Jamia Begum"
+date: "2022-10-09"
+output: pdf_document
+---
+
+
+
+
+```{r}
+setwd("F:/INTERMATH/intermath 2021-2023/spain/DV/R markdown execise")
+
+library(datasets)
+iris
+iris1<- iris[,c(1,2,3,5)]
+summary(iris1)
+table(iris1$Species)
+
+histogram(~ Sepal.Length+ Sepal.Width  + Petal.Width ,
+          data=iris,n=20, main= 'Different histograms in a panel', col= "red")
+
+iris2<- iris[,c(1,2)]
+iris2
+regresn=lm(Sepal.Width ~ Sepal.Length,data= iris2)
+regresn
+summary(regresn)
+library(ggplot2)
+qplot(Sepal.Length,Sepal.Width, data = iris2, 
+      geom= "point")+ geom_smooth(method= "lm") 
+
+```
+
