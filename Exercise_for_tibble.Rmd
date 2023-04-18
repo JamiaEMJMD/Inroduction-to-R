@@ -1,0 +1,83 @@
+---
+title: "Exercise for Tibble"
+author: "Jamia Begum"
+date: "2022-10-12"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+Exercise:1
+How can you know whether an object is a tibble? (Hint: try printing mtcars, which is a regular data frame).
+
+```{r}
+
+
+library(tidyverse)
+
+is_tibble(mtcars)
+
+mtcars
+mtcars.tib<-as_tibble(mtcars)
+mtcars.tib
+is_tibble(mtcars.tib)
+```
+
+As seen on the above examples,the printing pattern is different for tibble than dataframe. Tibble shows only the first 10 rows, and all the columns that fit on screen by default. Also,it gives number of rows and columns and prints data type for each column.Another way to check whether the object is a tibble or not is to use is_tibble command which returns TRUE if it's a tibble.
+
+
+
+Exercise:2
+If you have the name of a variable stored in an object, e.g. var <- “mpg”, how can you extract the reference variable from a tibble?
+
+```{r}
+var<-"mpg"
+
+mtcars.tib$var
+mtcars.tib[[var]]
+```
+
+Here, $ searchs for the column name var so gives unknown result.
+
+
+
+Exercise:3
+What option controls how many additional column names are printed at the footer of a tibble?
+
+```{r}
+print(nycflights13::flights)
+print(nycflights13::flights,n_extra=3)
+
+
+```
+By default all the column information are printed at the footer.To customize the number of column names printed in the footer we can use n_extra.
+
+
+Exercise:4
+Practice creating new variables in the following data frame
+
+tbl <- tibble( age = c(14, 18, 22, 12, 16, 19, 21, 24), chol = c(172, 180, 185, 170, 175, 188, 190, 192), sex = c("male", "male", "female", "female", "female", "male", "male", "male" )
+)
+by: + Extracting the variable called sex. + Plotting a scatterplot of age vs chol. + Creating a new column called chol2 which is chol to the power of 2. + Rename the columns to one, two and three.
+
+```{r}
+library(tibble)
+tbl <- tibble( age = c(14, 18, 22, 12, 16, 19, 21, 24),
+               chol = c(172, 180, 185, 170, 175, 188,190, 192),
+      sex = c("male", "male","female", 
+              "female", "female", "male", "male", "male" ))
+tbl               
+tbl$sex
+library(tidyverse)
+ggplot(tbl, aes(age, chol)) + geom_point()
+mutate(tbl,chol2= chol^2)
+transmute(tbl,one="age",two="chol",three="sex")
+
+```
+
+
+

@@ -1,0 +1,84 @@
+---
+title: "Exercise of Data Transform"
+author: "Jamia Begum"
+date: "2022-10-13"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+Exercises (data transform) :
+1. Using flights dataset, find all flights that
+a) Had an arrival delay of two or more hours
+b)Flew to Houston (IAH or HOU) 
+c) Arrived more than two hours late, but didn’t leave late
+d) Were delayed by at least an hour, but made up over 30 minutes in flight
+
+
+```{r}
+library(tidyverse)
+library("nycflights13")
+library("dplyr")
+flights
+filter(flights, arr_delay >= 120)
+select(flights,dest)
+filter(flights, dest == "IAH" | dest == "HOU") 
+filter(flights, arr_delay > 120, dep_delay <= 0)
+filter(flights, dep_delay >= 60, dep_delay - arr_delay > 30)
+```
+
+
+2. Another useful dplyr filtering helper is between(). What does it do? Can you use it to simplify the code needed to answer the previous challenges?
+
+
+between(x, left, right) gives values in a numeric vector bounded in a specified range (left, right) 
+
+Using it in the previous questions does not simplify the codes here. 
+```{r}
+filter(flights, between(arr_delay, 120, Inf) )
+filter(flights, between(arr_delay, 120, Inf)& between(dep_delay,-Inf,0) )
+filter(flights, between(dep_delay, 60, Inf)& between(dep_delay- arr_delay,31,Inf) )
+```
+
+3. Sort flights to find the fastest flights.
+
+fastest flights mean having highest average speed calculated by distance/air time
+```{r}
+arrange(flights, desc(distance / air_time))
+
+```
+
+4. Create a new data frame having variables with the dep string.
+
+
+```{r}
+dep_str=select(flights, contains("dep"))
+dep_str
+```
+
+5. Create a new data frame having the hour and minute of
+depature (Hint: information is in the variable dep_time with format HHMM or HMM. Use %/% or %% when appropriate)
+
+we need to split hour digits and minute digits from dep_time.
+## %/% gives quotient so gives the hour digits here
+##  %%  gives remainder so gives the minute digits here
+
+```{r}
+dp_flights<-mutate(flights,dep_hour=dep_time %/% 100, dep_min = dep_time %% 100)
+select(dp_flights,dep_time,dep_hour,dep_min)
+```
+
+
+
+6. Create a summary of each airline (variable carrier) describing the total number of flights, the average, median, IQR of arr_delay
+```{r}
+flights %>%
+  group_by(carrier) %>% summarise( count = n(), mean_delay = mean(arr_delay, na.rm = TRUE)
+  ,median_delay = median(arr_delay, na.rm = TRUE),
+  IQR_delay = IQR(arr_delay, na.rm = TRUE))
+```
+
+

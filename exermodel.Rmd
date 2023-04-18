@@ -1,0 +1,26 @@
+---
+title: "Exercise-create model"
+author: "Jamia Begum"
+date: "2022-11-07"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+
+#Name: Jamia Begum
+#NIU: 1676891
+
+
+
+library(tidyverse)
+#install.packages("caret")
+library(caret)
+library(MASS)
+Boston
+
+```
+
