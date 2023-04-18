@@ -1,5 +1,5 @@
-# Introduction to R
-Welcome to the "Introduction-to-R" repository! This is a comprehensive collection of content related to all the basic and essential tasks related to the R programming language. This repository is designed to be a valuable resource for anyone who is interested in learning R, from beginners to advanced users.
+# R for Data Science
+Welcome to the "R-for-Data-Science" repository! This is a comprehensive collection of content related to all the basic and essential tasks related to the R programming language. This repository is designed to be a valuable resource for anyone who is interested in learning R, from beginners to advanced users.
 
 Here you will find a wealth of information on a variety of topics including R-Markdown, ggplot, data transformation, tibble, basic data science, and visualization with R. I have also included a variety of hands-on exercises and solutions to help you practice and reinforce what you have learned.
 
